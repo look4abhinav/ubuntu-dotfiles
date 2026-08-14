@@ -10,6 +10,10 @@ fi
 export PATH="$PATH:$HOME/.fzf/bin:$HOME/.local/bin:/opt/nvim-linux/bin"
 export EDITOR='nvim'
 
+# Skip Nvim's startup terminal queries (background/cursor DSR) which time out
+# over SSH/tmux and produce the "Terminal did not respond to DSR" warning.
+export NVIM_NOTTYFAST=1
+
 if [[ -d "$HOME/.opencode/bin" ]]; then
   export PATH="$PATH:$HOME/.opencode/bin"
 fi
