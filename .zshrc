@@ -108,7 +108,7 @@ alias upy='UV_NO_MODIFY_PATH=1 uv self update; uv tool upgrade --all'
 alias pyc='fd -H -I "^(__pycache__|\.ruff_cache|\.pytest_cache|\.mypy_cache|\.ipynb_checkpoints|\.eggs|\.tox)$|\.(egg-info|egg|pyc|pyo)$" -X rm -rf'
 
 # =============================================================================
-# 8. CACHED SHELL INTEGRATIONS (fzf, zoxide, uv)
+# 8. CACHED SHELL INTEGRATIONS (fzf, zoxide, uv, herdr)
 # =============================================================================
 # Generate each integration once (fast startup) and only when the tool is
 # installed; never leave a stale/empty cache file behind.
@@ -129,6 +129,11 @@ if (( $+commands[uv] )) && [[ ! -f "$EVAL_CACHE_DIR/uv.zsh" ]]; then
   uv generate-shell-completion zsh > "$EVAL_CACHE_DIR/uv.zsh" 2>/dev/null || rm -f "$EVAL_CACHE_DIR/uv.zsh"
 fi
 [[ -f "$EVAL_CACHE_DIR/uv.zsh" ]] && source "$EVAL_CACHE_DIR/uv.zsh"
+
+if (( $+commands[herdr] )) && [[ ! -f "$EVAL_CACHE_DIR/herdr.zsh" ]]; then
+  herdr completion zsh > "$EVAL_CACHE_DIR/herdr.zsh" 2>/dev/null || rm -f "$EVAL_CACHE_DIR/herdr.zsh"
+fi
+[[ -f "$EVAL_CACHE_DIR/herdr.zsh" ]] && source "$EVAL_CACHE_DIR/herdr.zsh"
 
 # =============================================================================
 # 9. HOOKS
